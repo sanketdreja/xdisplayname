@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function NameForm() {
   // Define state for the first name, last name, and full name
@@ -9,15 +9,10 @@ function NameForm() {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Check if both first and last name are not empty
-    if (firstName && lastName) {
-      // Concatenate first and last name and update full name state
-      setFullName(`${firstName} ${lastName}`);
-    } else {
-      // If either first or last name is empty, clear the fullName state
-      setFullName("");
-    }
+    // If either first or last name is empty, clear the fullName state
+    setFullName("");
+    setFirstName("");
+    setLastName("");
   };
 
   // Handle first name input change
@@ -30,6 +25,9 @@ function NameForm() {
     setLastName(e.target.value);
   };
 
+  useEffect(() => {
+    setFullName(`${firstName} ${lastName}`);
+  }, [firstName, lastName]);
   return (
     <div>
       <h1>Full Name Display</h1>
@@ -54,11 +52,11 @@ function NameForm() {
             required
           />
         </div>
-        <button type="submit" disabled={!firstName || !lastName}>
+        <button type="submit" disabled={!firstName && !lastName}>
           Submit
         </button>
       </form>
-      {/* Display the full name only if it is set */}
+
       {fullName && <p>Full Name: {fullName}</p>}
     </div>
   );
