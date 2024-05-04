@@ -10,9 +10,13 @@ function NameForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // If either first or last name is empty, clear the fullName state
-    // setFullName("");
+    // 
     setFirstName("");
     setLastName("");
+
+    if(!firstName || !lastName){
+      setFullName("");
+    }
   };
 
   // Handle first name input change
