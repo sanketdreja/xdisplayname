@@ -9,23 +9,25 @@ function NameForm() {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Concatenate first and last name and update full name state
-    // The fullName is already being updated on change, so you can remove the following line
-    // setFullName(`${firstName} ${lastName}`);
+    
+    // Check if both first and last name are not empty
+    if (firstName && lastName) {
+      // Concatenate first and last name and update full name state
+      setFullName(`${firstName} ${lastName}`);
+    } else {
+      // If either first or last name is empty, clear the fullName state
+      setFullName("");
+    }
   };
 
   // Handle first name input change
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
-    // Update full name based on first and last name changes
-    setFullName(`${e.target.value} ${lastName}`);
   };
 
   // Handle last name input change
   const handleLastNameChange = (e) => {
     setLastName(e.target.value);
-    // Update full name based on first and last name changes
-    setFullName(`${firstName} ${e.target.value}`);
   };
 
   return (
@@ -56,7 +58,7 @@ function NameForm() {
           Submit
         </button>
       </form>
-      {/* Display the full name on every change */}
+      {/* Display the full name only if it is set */}
       {fullName && <p>Full Name: {fullName}</p>}
     </div>
   );
