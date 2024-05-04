@@ -1,69 +1,54 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-function NameForm() {
-  // Define state for the first name, last name, and full name
+const NameForm = () => {
+  // Declare state variables for first name, last name, and full name display
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [fullName, setFullName] = useState("");
 
   // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // If either first or last name is empty, clear the fullName state
-    // 
-    setFirstName("");
-    setLastName("");
-
-    if(!firstName || !lastName){
-      setFullName("");
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent form from submitting
+    // Display the full name if both fields are filled
+    if (firstName && lastName) {
+      setFullName(`Full Name: ${firstName} ${lastName}`);
     }
   };
 
-  // Handle first name input change
-  const handleFirstNameChange = (e) => {
-    setFirstName(e.target.value);
-  };
-
-  // Handle last name input change
-  const handleLastNameChange = (e) => {
-    setLastName(e.target.value);
-  };
-
-  useEffect(() => {
-    setFullName(`${firstName} ${lastName}`);
-  }, [firstName, lastName]);
   return (
     <div>
-      <h1>Full Name Display</h1>
+      <h1> Display Full Name</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="firstName">First Name:</label>
-          <input
-            type="text"
-            id="firstName"
-            value={firstName}
-            onChange={handleFirstNameChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            type="text"
-            id="lastName"
-            value={lastName}
-            onChange={handleLastNameChange}
-            required
-          />
-        </div>
-        <button type="submit" disabled={!firstName && !lastName}>
-          Submit
-        </button>
+        {/* Input field for first name */}
+        <label htmlFor="firstName">First Name:</label>
+        <input
+          type="text"
+          id="firstName"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+        />
+        <br />
+        <br />
+        {/* Input field for last name */}
+        <label htmlFor="lastName">Last Name:</label>
+        <input
+          type="text"
+          id="lastName"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          required
+        />
+        <br />
+        <br />
+        {/* Submit button */}
+        <button type="submit">Submit</button>
       </form>
 
-      {fullName && <p>Full Name: {fullName}</p>}
+      {/* Display the full name */}
+      <p>{fullName}</p>
     </div>
   );
-}
+};
 
 export default NameForm;
