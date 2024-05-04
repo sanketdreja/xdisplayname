@@ -42,7 +42,9 @@ const NameForm = () => {
         <br />
         <br />
         {/* Submit button */}
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={!firstName || !lastName}>
+          Submit
+        </button>
       </form>
 
       {/* Display the full name */}
