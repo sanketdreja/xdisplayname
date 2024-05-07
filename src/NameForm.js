@@ -30,14 +30,12 @@ const NameForm = () => {
             placeholder="First Name"
             value={firstName}
             onChange={handleFirstNameChange}
-            required
           />
           <input
             type="text"
             placeholder="Last Name"
             value={lastName}
             onChange={handleLastNameChange}
-            required
           />
           <button type="submit">Submit</button>
         </form>
