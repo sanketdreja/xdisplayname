@@ -22,7 +22,7 @@ const NameForm = () => {
 
   return (
     <div>
-      <h1> Display Full Name</h1>
+      <h1> Full Name Display</h1>
       <div>
         <form onSubmit={handleSubmit}>
           <input
